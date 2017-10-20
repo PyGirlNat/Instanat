@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content %}
+<div display=inline-block>
+{% for post in posts %}
+  <div class="imgContainer display:inline-block">
+    <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+    <img src="{{ post.image.url }}" class="thumbnail">
+    {% if user.is_authenticated and post.user == request.user %}
+      <a href="{% url 'instanat:delete' post.id %}">Delete image</a>
+    {% endif %}
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

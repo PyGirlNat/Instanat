@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div style="border: 1px solid black; margin-left: 22vw; height: 500px; width: 1000px; ">
+  <div style="border: 1px solid black; display: inline-block; height: 100%; width: 60%; float: left; clear: right">
+    <img src="{{ post.image.url }}" class="thumbnail" style="height: 100%; width: 100%">
+  </div>
+  <div class="container" style="border: 1px solid black; display: inline-block; height: 100%; width: 40%; float: right">
+    <div class="col-lg-12">
+      {% for comment in comments %}
+        <div>
+            <p><strong>{{ comment.user }}</strong></p>
+            {{ comment.text }}
+        </div>
+        <br>
+      {% endfor %}
+    </div>
+    <div>
+      <div>
+        <a href="{% url 'instanat:add_comment' post.id %}">Add comment</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+*.pyc
+*.jpg
+*.png
+*.sqlite3
+*/**/backup_*
+*/**/test_*
+

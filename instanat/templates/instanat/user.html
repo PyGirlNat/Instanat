@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+{% block content %}
+<div class="row  center-block  caption">
+{% for post in posts %}
+<div class="column">
+    <a href="{% url 'instanat:show_post' post.id %}"><img src="{{ post.image.url }}" class="thumbnail"></a>
+    {% if user.is_authenticated and post.user == request.user %}
+      <a href="{% url 'instanat:delete' post.id %}">Delete image</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

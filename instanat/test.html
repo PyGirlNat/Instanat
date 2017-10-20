@@ -1,0 +1,36 @@
+<div>
+  {% if username == post.user %}
+    {% for post in posts %}
+      <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+        <img src="{{ post.image.url}}" class="img-thumbnail" class="img-responsive" alt="Cinque Terre" width="304" height="236">
+        <a href="{% url 'instanat:delete' id=post.id %}">Delete</a>
+        <p>{{ post.user }}<p>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+
+<form class="navbar-form navbar-right" role="search">
+  {% csrf_token %}
+  <div class="form-group input-group">
+    <input type="text" class="form-control" placeholder="Search..">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">
+        <span class="glyphicon glyphicon-search"></span>
+      </button>
+    </span>
+  </div>
+</form>
+
+
+<form class="navbar-form navbar-left" role="search" method="get" action="{% url 'instanat:main' username=user.username %}">
+  <div class="form-group">
+      <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+  </div>
+  <button type="submit" class="btn btn-default">Search</button>
+</form>
+
+# url(r'^user/(?P<username>[\w]+)/$', UserView.as_view(), name='user'),
+#url(r'^aaa/(?P<username>[\w]+)/$', main_mat_view, name='main_mat_view'),
+# url(r'^search/(?P<search_query>[\w]+)/$', SearchView.as_view(), name='search')

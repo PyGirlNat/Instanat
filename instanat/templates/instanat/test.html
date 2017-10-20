@@ -1,0 +1,19 @@
+#pierwotny widok
+class UserView(View):
+    def get(self, request, username):
+        user = get_object_or_404(User, username=username)
+        posts = Post.objects.filter(user=user.id)
+        return render(request, 'instanat/user.html', {'posts': posts})
+
+#działający widok z lightboxem. Nie działa przechodzenie na inne konta.
+class UserView(View):
+    def get(self, request, username):
+        user = get_object_or_404(User, username=username)
+        posts = Post.objects.filter(user=user.id)
+        comments = Comment.objects.all()
+        context = {
+                    'posts': posts,
+                    'user': user,
+                    'comments': comments
+                }
+        return render(request, 'instanat/buckup_user.html', context)
